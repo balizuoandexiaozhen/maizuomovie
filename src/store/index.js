@@ -10,7 +10,7 @@ var store = new Vuex.Store({
 		soonPlayingList: [],
 	},
 	getters:{  //计算属性
-		
+
 	},
 	mutations:{  //同步改变数据
 		getNowPlayingSync(state,list) {
@@ -31,7 +31,6 @@ var store = new Vuex.Store({
 				}
 			}).then((res)=>{
 				// console.log(res.data.data.films)
-				// state.nowPlayingList = res.data.data.films;
 				context.commit("getNowPlayingSync",res.data.data.films)
 				// console.log(this.state.nowPlayingList)
 
@@ -44,10 +43,8 @@ var store = new Vuex.Store({
 				}
 			}).then((res)=>{
 				// console.log(res.data.data.films)
-				// state.nowPlayingList = res.data.data.films;
 				context.commit("getSoonPlayingSync",res.data.data.films)
 				// console.log(this.state.nowPlayingList)
-
 			})
 		}
 	}

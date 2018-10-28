@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <HeaderNav :city="city"/>
-    <router-view @city="receive" class="content"/>
+    <HeaderNav/>
+    <router-view class="content" />
   </div>
 </template>
 
@@ -12,24 +12,24 @@ export default {
   name: 'App',
   data() {
     return {
-      city: ""
+
     }
   },
   components: {
     HeaderNav
   },
   methods: {
-    receive(city) {
-      this.city = city
-      console.log(this.city)
-    }
+
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" >
   @import './assets/css/style.css';
    $sc:25;
+   #app {
+     height: 100%;
+   }
   .content{
       margin-top:50/$sc+rem;
   }
