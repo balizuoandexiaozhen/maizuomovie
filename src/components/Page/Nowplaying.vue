@@ -59,14 +59,6 @@ export default {
         border-bottom-color: rgb(201, 201, 201);
         cursor: pointer;
         font-size: 12px;
-        // p:after {
-        //     content: "";
-        //     clear: both;
-        //     height: 0;
-        //     visibility: visible;
-        //     display: block;
-        // }
-
         .now_content {
             flex: 1;
             margin-left: 20px;

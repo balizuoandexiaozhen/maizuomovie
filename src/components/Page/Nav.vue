@@ -4,7 +4,7 @@
             <div class="mynav" v-if="flag" >
                 <ul>
                     <li v-for="item in nav" :key="item.id" @click="toggle">
-                        <router-link :to="item.path"  >
+                        <router-link :to="item.path" >
                             {{item.text}}
                             <i  class="fa fa-chevron-right right"></i>
                         </router-link>
@@ -74,7 +74,7 @@ export default {
         border-top: 1px solid #222;
         box-shadow: 0 1px 1px #363636 inset;
         background: #282828;
-        position: absolute;
+        position: fixed;
         display: block;
         top: 50/$sc+rem;
         right: 110px;

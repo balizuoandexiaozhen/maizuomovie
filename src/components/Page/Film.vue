@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="nav">
-            <router-link to="/film/nowplaying">正在热映</router-link>
-            <router-link to="/film/soonplaying">即将上映</router-link>
+            <router-link to="/film/now-playing">正在热映</router-link>
+            <router-link to="/film/coming-soon">即将上映</router-link>
         </div>
         <router-view></router-view>
     </div>
@@ -40,7 +40,7 @@ export default {
             text-align: center;
             color: #666;
             line-height: 46px;
-            border-bottom: solid 3px #fff;
+            border-bottom: solid 3px #f9f9f9;
         }
         .router-link-active {
             color: #fe6e00;

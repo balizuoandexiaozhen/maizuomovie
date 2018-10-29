@@ -6,6 +6,7 @@ import Film from "@/components/Page/Film";
 import Soonplaying from "@/components/Page/Soonplaying";
 import Nowplaying from "@/components/Page/Nowplaying";
 import Login from "@/components/Page/Login";
+import MovieList from "@/components/Page/MovieList"
 
 Vue.use(Router);
 
@@ -19,7 +20,7 @@ export default new Router({
       }
     },
     {
-      path: "/home/:city?",
+      path: "/home",
       name: "home",
       component: Home
     },
@@ -29,25 +30,38 @@ export default new Router({
       component: City
     },
     {
-      path: "/film",
-      // name: "film",
-      redirect: {
-        name: "now"
-      },
-      component: Film,
-      children: [
-        {
-          path: "nowplaying",
-          name: "now",
-          component: Nowplaying
-        },
-        {
-          path: "soonplaying",
-          name: "soon",
-          component: Soonplaying
-        }
+    	path:"/film",
+    	name:"film",
+    	component:Film,
+      redirect:{name:'movielist'},
+      children:[
+          {
+             path:":type",
+             name:'movielist',
+             component:MovieList
+          }
       ]
     },
+    // {
+    //   path: "/film",
+    //   name: "film",
+    //   redirect: {
+    //     name: "now"
+    //   },
+    //   component: Film,
+    //   children: [
+    //     {
+    //       path: "nowplaying",
+    //       name: "now",
+    //       component: Nowplaying
+    //     },
+    //     {
+    //       path: "soonplaying",
+    //       name: "soon",
+    //       component: Soonplaying
+    //     }
+    //   ]
+    // },
     {
       path: "/login",
       name: "login",
