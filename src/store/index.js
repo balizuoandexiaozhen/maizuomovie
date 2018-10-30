@@ -2,12 +2,13 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import movielist from './movielist'
 // import { Toast } from 'mint-ui';
+import cinemalist from './cinemalist'
 
 Vue.use(Vuex);
 // import axios from "axios";
 var store = new Vuex.Store({
 	modules: {
-		movielist
+		movielist,cinemalist
 	}
 	// state:{
 	// 	city: "北京",

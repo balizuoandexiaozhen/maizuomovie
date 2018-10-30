@@ -8,6 +8,10 @@ export default {
         this.state.soonPlayingList = list;
         // console.log(11)
     },
+    changeNavName(state,p) {
+        state.navname = p
+    },
+
     getList(state,p){
         state[p.type]=p.list
     },

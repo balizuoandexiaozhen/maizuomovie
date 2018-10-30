@@ -6,7 +6,7 @@
         <h3>卖座电影</h3>
 		<span class="header-right">
 			<router-link to="/city">
-				<span class="location">{{$store.state.city}}</span>
+				<span class="location">{{$store.state.movielist.city}}</span>
 				<i class="fa fa-angle-down"></i>
 			</router-link>
 			<i class="fa fa-user-o"></i>
@@ -16,7 +16,26 @@
 
 <script>
 export default {
-	props: ["toggle"]
+	props: ["toggle"],
+	data() {
+		return {
+			
+		}
+	},
+	created() {
+		// this.$router.boforeEach((to, from, next) => {
+		// 	this.changtitle(to.path);
+		// 	next();
+		// }) 
+	},
+	methods: {
+		// changetitle(path) {
+		// 	switch(path) {
+		// 		case '/city': this.commit("changeNavName","选择城市");break;
+		// 		default: this.commit("changeNavName","卖座电影");
+		// 	} 
+		// }
+	}
 }
 </script>
 

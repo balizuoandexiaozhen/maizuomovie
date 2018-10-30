@@ -7,6 +7,7 @@ import Soonplaying from "@/components/Page/Soonplaying";
 import Nowplaying from "@/components/Page/Nowplaying";
 import Login from "@/components/Page/Login";
 import MovieList from "@/components/Page/MovieList"
+import Cinema from "@/components/Page/Cinema"
 
 Vue.use(Router);
 
@@ -41,6 +42,11 @@ export default new Router({
              component:MovieList
           }
       ]
+    },
+    {
+      path: "/cinema",
+      name: "cinema",
+      component: Cinema
     },
     // {
     //   path: "/film",

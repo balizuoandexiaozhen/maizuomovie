@@ -25,14 +25,21 @@
 </template>
 
 <script>
+import {mapState,mapMutations,mapActions} from 'vuex'
 export default {
      created() {
-        this.$store.dispatch("getSoonPlaying");
+        this.getList({type: "coming-soon",count: 3});
     },
     computed: {
-        soonplaying() {
-            return this.$store.state.soonPlayingList || [];
-        }
+        // soonplaying() {
+        //     return this.$store.state.soonPlayingList || [];
+        // }
+         ...mapState({
+   	  	  	"soonplaying":(state)=>state.movielist["coming-soon"]
+        })
+    },
+     methods: {
+        ...mapActions(["getList"])
     }
 }
 </script>

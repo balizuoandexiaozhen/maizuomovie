@@ -23,14 +23,22 @@
 </template>
 
 <script>
+import {mapState,mapMutations,mapActions} from 'vuex'
 export default {
-     created() {
-        this.$store.dispatch("getNowPlaying");
+    created() {
+        // this.$store.dispatch("getNowPlaying");
+        this.getList({type:'now-playing',count: 5})
     },
     computed: {
-        nowplaying() {
-            return this.$store.state.nowPlayingList || [];
-        },
+        // nowplaying() {
+        //     return this.$store.state.nowPlayingList || [];
+        // },
+        ...mapState({
+   	  	  	"nowplaying":(state)=>state.movielist["now-playing"]
+        })
+    },
+    methods: {
+        ...mapActions(["getList"])
     }
 }
 </script>

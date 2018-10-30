@@ -48,7 +48,7 @@ export default {
                 count:obj.count? obj.count:5
             }
         }).then((res)=>{
-            console.log(res.data.data)
+            // console.log(res.data.data)
             t.close(); //把toast框关闭
             context.commit("getList",{type:obj.type,list:res.data.data.films});	
             if(obj.page==="movielist"){
@@ -56,8 +56,8 @@ export default {
             }
             var current = res.data.data.page.current;
             var total = res.data.data.page.total;
-            console.log(current)
-            console.log(total)
+            // console.log(current)
+            // console.log(total)
             //页数加一
             context.commit("changeHasMorePage",current!=total)
             context.commit("changeLoading",false)

@@ -1,7 +1,9 @@
 export default {
     city: "北京",
-    "nowPlayingList": [],
-    "soonPlayingList": [],
+    navname: "卖座电影",
+    // flag: true,
+    // "nowPlayingList": [],
+    // "soonPlayingList": [],
     "now-playing": [],
     "coming-soon": [],
     "list":[],

@@ -22,8 +22,7 @@
 export default {
     props: ["toggle","flag"],
     data(){
-		return {
-            
+		return {          
 			nav:[
 			   {
                     id:1,
@@ -38,7 +37,7 @@ export default {
                 {
                     id:3,
                     text:'影院',
-                    path:"/film"
+                    path:"/cinema"
                 },
                 {
                     id:4,
@@ -68,7 +67,7 @@ export default {
 </script>
 
 
-<style lang="scss">
+<style lang="scss" >
     $sc:25;
     .mynav{
         border-top: 1px solid #222;

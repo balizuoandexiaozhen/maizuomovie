@@ -37,33 +37,38 @@ export default {
             day: ["日","一","二","三","四","五","六"]
         }
     },
+    created() {
+        // console.log(11)
+        // console.log(this.$store.state.movielist.flag)
+    },
     computed:{
         // movielist() {
         //     return this.$store.state.list || [];
         // }
         ...mapState(["movielist","list"])
-  },
-  watch: {
-      $route: {
-          handler(n) {
-              this.resetList();
-              this.type = n.params.type
-              if(!this.type) {
-                  this.type = 'now-playing'
-              }
-            this.getList({type: this.type,page:'movielist',count:7})
-            //   this.$store.dispatch("getList",{type: this.type,page:'movielist',count:7});
-          },
-          immediate: true
-      }
-  },
-  methods: {
-    ...mapMutations(["resetList"]),
-    ...mapActions(["getList"]),
-    loadMore() {
-        this.getList({type: this.type,page:'movielist',count: 7})
+    },
+    watch: {
+        $route: {
+            handler(n) {
+                this.$store.state.movielist.flag = false;
+                this.resetList();
+                this.type = n.params.type
+                if(!this.type) {
+                    this.type = 'now-playing'
+                }
+                this.getList({type: this.type,page:'movielist',count:7})
+                //   this.$store.dispatch("getList",{type: this.type,page:'movielist',count:7});
+            },
+            immediate: true
+        }
+    },
+    methods: {
+        ...mapMutations(["resetList"]),
+        ...mapActions(["getList"]),
+        loadMore() {
+            this.getList({type: this.type,page:'movielist',count: 7})
+        }
     }
-  }
 }
 </script>
 
