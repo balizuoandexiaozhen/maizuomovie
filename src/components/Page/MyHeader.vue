@@ -34,6 +34,9 @@ export default {
 		changtitle(path) {
 			switch(path) {
 				case '/city': this.$store.commit("changeNavName","选择城市");break;
+				case '/login': this.$store.commit("changeNavName","登录");break;
+				case '/cinema': this.$store.commit("changeNavName","全部影院");break;
+				case '/card': this.$store.commit("changeNavName","查询/绑定/激活卖座卡");break;
 				default: this.$store.commit("changeNavName","卖座电影");
 			} 
 		}

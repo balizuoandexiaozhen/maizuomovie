@@ -47,7 +47,7 @@ export default {
                 {
                     id:5,
                     text:'我的',
-                    path:"/my"
+                    path:"/mine"
                 },
                 {
                     id:6,

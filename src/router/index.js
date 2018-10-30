@@ -9,11 +9,15 @@ import Login from "@/components/Page/Login";
 import MovieList from "@/components/Page/MovieList"
 import Cinema from "@/components/Page/Cinema"
 import Detail from "@/components/Page/Detail"
+import Mine from "@/components/Page/Mine"
+import Card from "@/components/Page/Card"
+import Carddefault from "@/components/Page/Carddefault"
+import Cardelectronic from "@/components/Page/Cardelectronic"
 
 
 Vue.use(Router);
 
-export default new Router({
+var router = new Router({
   mode: "history",
   routes: [
     {
@@ -60,6 +64,33 @@ export default new Router({
       name: "login",
       component: Login
     },
+
+    {
+      path: "/mine",
+      name: "mine",
+      component: Mine,
+      meta: {
+        islogin: true
+      }
+    },
+    {
+    	path:"/card",
+    	name:"card",
+    	component:Card,
+      redirect:{name:'default'},
+       children: [
+        {
+          path: "default",
+          name: "default",
+          component: Carddefault
+        },
+        {
+          path: "electronic",
+          name: "electronic",
+          component: Cardelectronic
+        }
+      ]
+    },
     // {
     //   path: "/film",
     //   name: "film",
@@ -93,3 +124,20 @@ export default new Router({
     // }
   ]
 });
+
+router.beforeEach((to,from,next) => {
+  console.log(to.meta)
+  if(to.meta && to.meta.islogin) {
+    if(sessionStorage.getItem("user")) {
+      next();
+      console.log("登陆了")
+    } else {
+      router.push({name:"login"})
+    }
+  } else {
+    next();
+    console.log("meiyou")
+  }
+})
+
+export default router;

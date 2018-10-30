@@ -2,14 +2,14 @@
     <div class="bigbox">
         <div class="box">
             <div class="getyzm">
-                <input type="text" @keyup="keyup" v-model="iphone" placeholder="请输入手机号">
-                <mt-button v-if="flag" @click="getYzm" class="yzmbtn" type="danger">获取验证码</mt-button>
+                <input type="text" @keyup="keyup" v-model="iphone" placeholder="请输入电子卖座卡号">
+                <!-- <mt-button v-if="flag" @click="getYzm" class="yzmbtn" type="danger">获取验证码</mt-button> -->
             </div>
-            <div class="psw">
+            <!-- <div class="psw">
                 <input type="password" v-model="mima" placeholder="请输入验证码">
-            </div>
+            </div> -->
             <p>{{tip}}</p>
-            <button @click="sub">登录</button>
+            <button @click="sub">查询</button>
         </div>
     </div>
 </template>
@@ -70,7 +70,7 @@ export default {
 <style lang="scss" scoped>
     $sc: 25;
     .bigbox {
-        background-color: #f6f6f6;
+        // background-color: #f6f6f6;
         padding-top: 50/$sc+rem;
         height: 100%;
     }
@@ -98,7 +98,7 @@ export default {
                 outline: none;
                 padding-left: 15px;
                 font-size: 14px;
-                background-color: #f6f6f6;
+                // background-color: #f6f6f6;
             }
         }
         .psw {

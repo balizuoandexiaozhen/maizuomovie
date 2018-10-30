@@ -4,26 +4,33 @@
         <div class="filmcontent">
             <h3>影片简介</h3>
             <p>
-                <span>导演：</span>{{detail.director}}
+                <span>导&emsp;&emsp;演：</span>{{detail.director}}
                 <!-- <span></span> -->
             </p>
             <p>
-                <span>主演：</span>
-                <span v-for="(item, index) in detail.actors" :key="index">{{item.name}}|</span>
+                <span>主&emsp;&emsp;演:</span>
+                <span class="actors" @click="ii(index)" v-for="(item, index) in detail.actors" :key="index">
+                    {{item.name}}
+                    <i v-if="index != detail.actors.length-1"> | </i>
+                </span>
             </p>
             <p>
                 <span>地区语言：</span>
                 <span>{{detail.nation}}({{detail.language}}) </span>
             </p>
              <p>
-                <span>类型：</span>
+                <span>类&emsp;&emsp;型：</span>
                 <span>{{detail.category}} </span>
             </p>
              <p>
                 <span>上映日期：</span>
-                <span>{{detail.premiereAt|formateDate}} </span>
+                <span>{{detail.premiereAt|formateData}} </span>
             </p>
             <p>{{detail.synopsis}}</p>
+        </div>
+        <div class="btn">
+
+        <button>立即购票</button>
         </div>
     </div>
 </template>
@@ -34,7 +41,9 @@ import { Toast } from 'mint-ui';
 export default {
     data() {
         return {
-            detail: {}
+            detail: {
+                cover: {}
+            }
         }
     },
     created() {
@@ -54,6 +63,11 @@ export default {
             this.$store.state.movielist.navname = this.detail.name;
             console.log(res.data.data.film)
         })
+    },
+    methods: {
+        ii(index) {
+            console.log(index,this.detail.actors.length)
+        }
     }
 }
 </script>
@@ -77,6 +91,38 @@ export default {
         }
         p {
             font-size: 12px;
+            padding: 6px 15px;
+            span {
+                display: inline-block;
+                min-width: 50px;
+                text-align: justify 
+            }
+        }
+        .actors {
+            i {
+                font-style: normal;
+            }
+        }
+    }
+    .btn {
+        position: fixed;
+        left: 0;
+        bottom: 20px;
+        width: 100%;
+        text-align: center;
+        button {
+            font-size: 14px;
+            min-width: 156px;
+            height: 36px;
+            line-height: 36px;
+            border: none;
+            background-color: #fe8233;
+            padding: 0;
+            margin: 0;
+            border-radius: 18px;
+            color: #fff;
+            -webkit-transition: 0.5s ease;
+        
         }
     }
 </style>
