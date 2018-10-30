@@ -8,6 +8,8 @@ import Nowplaying from "@/components/Page/Nowplaying";
 import Login from "@/components/Page/Login";
 import MovieList from "@/components/Page/MovieList"
 import Cinema from "@/components/Page/Cinema"
+import Detail from "@/components/Page/Detail"
+
 
 Vue.use(Router);
 
@@ -48,6 +50,16 @@ export default new Router({
       name: "cinema",
       component: Cinema
     },
+    {
+      path: "/detail/:id",
+      name: "detail",
+      component: Detail
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: Login
+    },
     // {
     //   path: "/film",
     //   name: "film",
@@ -68,11 +80,7 @@ export default new Router({
     //     }
     //   ]
     // },
-    {
-      path: "/login",
-      name: "login",
-      component: Login
-    },
+    
     // {
     //   path: "/nowplaying",
     //   name: "nowplaying",

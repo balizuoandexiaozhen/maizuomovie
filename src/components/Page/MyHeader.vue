@@ -3,13 +3,15 @@
 		<span class="bar" >
 			<i class="fa fa-bars" @click="toggle"></i>
 		</span>
-        <h3>卖座电影</h3>
+        <h3>{{$store.state.movielist.navname}}</h3>
 		<span class="header-right">
 			<router-link to="/city">
 				<span class="location">{{$store.state.movielist.city}}</span>
 				<i class="fa fa-angle-down"></i>
 			</router-link>
+			<router-link to="/login">
 			<i class="fa fa-user-o"></i>
+			</router-link>
 		</span>
 	</div>
 </template>
@@ -23,18 +25,18 @@ export default {
 		}
 	},
 	created() {
-		// this.$router.boforeEach((to, from, next) => {
-		// 	this.changtitle(to.path);
-		// 	next();
-		// }) 
+		this.$router.beforeEach((to, from, next) => {
+			this.changtitle(to.path);
+			next();
+		}) 
 	},
 	methods: {
-		// changetitle(path) {
-		// 	switch(path) {
-		// 		case '/city': this.commit("changeNavName","选择城市");break;
-		// 		default: this.commit("changeNavName","卖座电影");
-		// 	} 
-		// }
+		changtitle(path) {
+			switch(path) {
+				case '/city': this.$store.commit("changeNavName","选择城市");break;
+				default: this.$store.commit("changeNavName","卖座电影");
+			} 
+		}
 	}
 }
 </script>

@@ -1,28 +1,30 @@
 <template>
     <div>
         <ul  v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
-            <li class="list"  v-for="(item,index) in movielist.list" :key="index">
-                <span class="pic">
-                    <img :src="item.poster.thumbnail" alt="">
-                </span>
-                <div class="now_content">
-                    <p class="head">
-                        <span class="title">{{item.name}}</span>
-                        <span class="score">
-                            <span v-if="type==='now-playing'">{{item.grade}}</span>
-                            <i class="iconfont icon-jiantou1"></i>
-                        </span>
-                    </p>
-                    <p class="detail">{{item.intro}}</p>
-                    <p class="count" v-if="type==='now-playing'">{{item.cinemaCount}}家影院上映 {{item.watchCount}}人购票</p>
-                    <p class="count" v-else>
-                        <span class="time">
-                            {{new Date(item.premiereAt).getMonth() +1}}月{{new Date(item.premiereAt).getDate()}}日上映
-                            星期{{day[new Date(item.premiereAt).getDay()]}}
-                        </span>
-                    </p>
-                </div>
-            </li>
+                <li class="list" @click="todetail(item.id)"  v-for="(item,index) in movielist.list" :key="index">
+            <!-- <router-link :to="'/detail/'+item.id"> -->
+                    <span class="pic">
+                        <img :src="item.poster.thumbnail" alt="">
+                    </span>
+                    <div class="now_content">
+                        <p class="head">
+                            <span class="title">{{item.name}}</span>
+                            <span class="score">
+                                <span v-if="type==='now-playing'">{{item.grade}}</span>
+                                <i class="iconfont icon-jiantou1"></i>
+                            </span>
+                        </p>
+                        <p class="detail">{{item.intro}}</p>
+                        <p class="count" v-if="type==='now-playing'">{{item.cinemaCount}}家影院上映 {{item.watchCount}}人购票</p>
+                        <p class="count" v-else>
+                            <span class="time">
+                                {{new Date(item.premiereAt).getMonth() +1}}月{{new Date(item.premiereAt).getDate()}}日上映
+                                星期{{day[new Date(item.premiereAt).getDay()]}}
+                            </span>
+                        </p>
+                    </div>
+            <!-- </router-link> -->
+                </li>
         </ul>
     </div>
 </template>
@@ -67,6 +69,10 @@ export default {
         ...mapActions(["getList"]),
         loadMore() {
             this.getList({type: this.type,page:'movielist',count: 7})
+        },
+        todetail(id) {
+            console.log(id)
+            this.$router.push({name:'detail',params:{id}})
         }
     }
 }

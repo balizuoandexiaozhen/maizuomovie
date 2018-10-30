@@ -6,13 +6,15 @@
             <div class="soon">
                 <ul>
                     <li v-for="(item,index) in soonplaying" :key="index">
-                        <img :src="item.cover.origin" alt="">
-                        <p class="txt">
-                            <span>
-                                <span class="name">{{item.name}}</span>
-                            </span>
-                            <span class="time">{{new Date(item.premiereAt).getMonth() +1}}月{{new Date(item.premiereAt).getDate()}}日上映</span>
-                        </p>
+                        <router-link :to=" '/detail/'+ item.id">
+                            <img :src="item.cover.origin" alt="">
+                            <p class="txt">
+                                <span>
+                                    <span class="name">{{item.name}}</span>
+                                </span>
+                                <span class="time">{{new Date(item.premiereAt).getMonth() +1}}月{{new Date(item.premiereAt).getDate()}}日上映</span>
+                            </p>
+                        </router-link>
                     </li>
                 </ul>
                 <div class="more">

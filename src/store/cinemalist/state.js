@@ -1,4 +1,5 @@
 export default {
     district: [],
-    list: []
+    list: [],
+    cinemaobj: {}
 }

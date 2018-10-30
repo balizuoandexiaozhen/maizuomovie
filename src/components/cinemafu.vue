@@ -1,7 +1,7 @@
 <template>
     <div>
         <ul>
-            <!-- <li v-for="(item, index) in district" :key="index">
+            <li v-for="(item, index) in district" :key="index">
                 <h3 class="position_name" @click="show(index)">{{item}}</h3>
                 <div class="position_content" v-if="xb === index">
                     <div class="list" v-for="(item, index) in list.filter((element) => {
@@ -15,10 +15,10 @@
                         <p class="detail">距离未知</p>
                     </div>
                 </div>
-            </li> -->
-            <li v-for="(item,key,index) in cinemaObj" :key="index">
-                <h3 class="position_name"  @click="toggle(key)">{{key}}</h3>
-                <div class="position_content" v-if="item.flag">
+            </li>
+             <!-- <li v-for="(item,key,index) in objlist" :key="index">
+                <h3 class="position_name" >{{key}}</h3>
+                <div class="position_content" >
                     <div class="list" v-for="(subItem, subIndex) in item" :key="subIndex">
                         <h3 class="cinema_name">{{subItem.name}}
                             <i class="iconfont icon-zuo"></i>
@@ -28,55 +28,62 @@
                         <p class="detail">距离未知</p>
                     </div>
                 </div>
-            </li> 
+            </li>  -->
         </ul>
     </div>
 </template>
  
  <script>
- import { Toast } from 'mint-ui';
  import {mapState,mapActions,mapMutations} from 'vuex'
  export default {
      data() {
          return {
-            cinemaObj:{}
+            flag: false,
+            xb: 0,
+            cxb: ""
          }
      },
      created() {
-        var t = Toast({
-            iconClass:"fa fa-spinner fa-pulse",
-            position: 'middle',
-            duration: -1  
-        });
-       this.$http.get("/mz/v4/api/cinema",{
-			params:{
-				__t:new Date().getTime()
-			}
-		}).then((res)=>{
-            t.close(); //把toast框关闭
-            var arr = [];
-			res.data.data.cinemas.forEach((item)=>{
-				if(!this.cinemaObj[item.district.name]){
-                    this.cinemaObj[item.district.name]=[];
-                    arr.push(item.district.name)
-					this.cinemaObj[item.district.name].flag=false;
-				}
-				this.cinemaObj[item.district.name].push(item);
-			})
-			this.cinemaObj[arr[0]].flag=true;
-            this.$forceUpdate();
-		})
+        this.getcinemaList()
+        // this.$forceUpdate();
      },
      computed: {
-        
+         district() {
+             return this.$store.state.cinemalist.district
+         },
+          list() {
+             return this.$store.state.cinemalist.list
+         },
+        //   objlist() {
+        //      return this.$store.state.cinemalist.cinemaobj
+        //  },
      },
      methods: {
-        toggle(key) {
-            // console.log(key)
-            this.cinemaObj[key].flag = !this.cinemaObj[key].flag;
-            this.$forceUpdate();
-        }
-       
+         ...mapActions(["getcinemaList","getcinemaobj"]),
+        // toggle(key) {
+        //     this.$store.state.movielist.cinemaobj[key].flag = !this.$store.state.movielist.cinemaobj[key].flag
+        // }
+
+        //  ...mapMutations(["changecinemaflag"]),
+         filter() {
+            this.$store.state.cinemalist.list.filter()
+        },
+        //  ...mapState(["cinemalist","district"])    
+        show(index) {  
+            if(!this.flag) {
+                this.xb = index;
+            } else {
+                this.xb = -1;
+            }
+            if(this.czb != index) {
+                this.xb = index;
+            }
+            this.cxb = this.xb
+            console.log(this.flag)
+            console.log(this.xb);
+            console.log(this.cxb);
+            this.flag = !this.flag;
+        },
        
      }
  }

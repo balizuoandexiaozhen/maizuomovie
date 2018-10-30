@@ -1,16 +1,18 @@
 <template>
     <div class="nowbox">
             <div class="now">
-                <ul>
+                <ul>    
                     <li v-for="(item,index) in nowplaying" :key="index">
-                        <img :src="item.cover.origin" alt="">
-                        <p class="txt">
-                            <span>
-                                <span class="name">{{item.name}}</span>
-                                <span class="count">{{item.cinemaCount}}家影院上映{{item.watchCount}}人购票</span>
-                            </span>
-                            <span class="grade">{{item.grade}}</span>
-                        </p>
+                        <router-link :to=" '/detail/'+ item.id">
+                            <img :src="item.cover.origin" alt="">
+                            <p class="txt">
+                                <span>
+                                    <span class="name">{{item.name}}</span>
+                                    <span class="count">{{item.cinemaCount}}家影院上映{{item.watchCount}}人购票</span>
+                                </span>
+                                <span class="grade">{{item.grade}}</span>
+                            </p>
+                        </router-link>
                     </li>
                 </ul>
                 <div class="more">

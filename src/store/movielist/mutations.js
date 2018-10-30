@@ -1,13 +1,13 @@
 export default {
-    getNowPlayingSync(state,list) {
+    // getNowPlayingSync(state,list) {
 
-        this.state.nowPlayingList = list;
-        // console.log(11)
-    },
-    getSoonPlayingSync(state,list) {
-        this.state.soonPlayingList = list;
-        // console.log(11)
-    },
+    //     this.state.nowPlayingList = list;
+    //     // console.log(11)
+    // },
+    // getSoonPlayingSync(state,list) {
+    //     this.state.soonPlayingList = list;
+    //     // console.log(11)
+    // },
     changeNavName(state,p) {
         state.navname = p
     },

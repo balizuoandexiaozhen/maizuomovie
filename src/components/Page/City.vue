@@ -1,16 +1,25 @@
 <template>
-    <div>
-        <div class="city" v-for="(item, index1) in letters" :key="index1">
-            <h3>{{item}}</h3>
+    <div v-scroll="obj" dis="400">
+        <div class="" >
+            <h3>按字母排序</h3>
             <ul>
-                <li @click="send(el.name)" v-for="(el, index2) in  cities.filter((element) => {
+                <li v-for="(item, index) in letters" :key="index" @click="gocity(item)">{{item}} </li>
+            </ul>
+        </div>
+        <div class="city" v-for="(item, index1) in letters" :key="index1">
+            <h3 :ref="item">{{item}}</h3>
+            <ul>
+                <li @click="send(el.name,el.id)" v-for="(el, index2) in  cities.filter((element) => {
                             return element.zm == item
                         })" :key="index2">
-                    <router-link :to="{name:'home',params: {city: el.name}}" >
+                    <router-link :to="{name:'home'}">
                         {{el.name}}
                     </router-link>
                 </li>
             </ul>
+        </div>
+        <div class="top" v-if="obj.flag" v-gotop>
+            <i class="iconfont icon-huidaodingbu5"></i>
         </div>
     </div>
 </template>
@@ -20,7 +29,10 @@ export default {
     data() {
         return {
             cities: [],
-            letters: []
+            letters: [],
+            obj: {
+                flag: false
+            }
         }
     },
     computed: {
@@ -31,12 +43,22 @@ export default {
         }
     },
     methods: {
-        send(name) {
-            // this.$emit('city',name);
-            // console.log(name)
-            this.$store.state.city = name
+        send(name,id) {
+            // console.log(name,id)
+            this.$store.state.movielist.city = name
+            var d = new Date();
+            d.setDate(d.getDate() + 7)
+            document.cookie = "cityId="+id+";expires="+d+";path=/";
+            document.cookie = "cityName="+encodeURI(name)+";expires="+d+";path=/";
             // console.log(this.$store.state.city)
+        },
+        gocity(item) {
+            // console.log(item)
+            // console.log(this.$refs[item][0].offsetTop)
+            document.documentElement.scrollTop = this.$refs[item][0].offsetTop - 50;
+            document.body.scrollTop = this.$refs[item][0].offsetTop - 50;
         }
+
     },
     created() {
         this.$http.get('/mz/v4/api/city',{
@@ -50,7 +72,8 @@ export default {
             }).map((item) => {
                 return {
                     name: item.name,
-                    zm: item.pinyin[0]
+                    zm: item.pinyin[0],
+                    id: item.id
                 }
             })
             var letters = this.cities.map((item) => {
@@ -64,6 +87,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    $sc: 25;
+    .top {
+        position: fixed;
+        bottom: 40/$sc+rem;
+        right: 40/$sc+rem;
+        font-size: 24px;
+        .icon-huidaodingbu5 {
+             font-size: 34px;
+             color: #f78360;
+        }
+    }
     h3 {
         font-size: 20px;
         font-weight: 100;
@@ -85,6 +119,7 @@ export default {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        color: #838383;
         a {
             color: #838383;
         }

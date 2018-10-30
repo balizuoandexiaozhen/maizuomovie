@@ -2,30 +2,30 @@ import axios from "axios";
 import { Toast } from 'mint-ui';
 
 export default {
-    getNowPlaying(context){
-        axios.get("/mz/v4/api/film/now-playing", {
-            params: {
-                __t: new Date().getTime(),
-                page: 1,
-                count: 5
-            }
-        }).then((res)=>{
-            context.commit("getNowPlayingSync",res.data.data.films)
+    // getNowPlaying(context){
+    //     axios.get("/mz/v4/api/film/now-playing", {
+    //         params: {
+    //             __t: new Date().getTime(),
+    //             page: 1,
+    //             count: 5
+    //         }
+    //     }).then((res)=>{
+    //         context.commit("getNowPlayingSync",res.data.data.films)
 
-        })
-    },
-    getSoonPlaying(context){
-        axios.get("/mz/v4/api/film/coming-soon", {
-            params: {
-                __t: new Date().getTime(),
-                page: 1,
-                count: 3
-            }
-        }).then((res)=>{
-            context.commit("getSoonPlayingSync",res.data.data.films)
-            // console.log(this.state.nowPlayingList)
-        })
-    },
+    //     })
+    // },
+    // getSoonPlaying(context){
+    //     axios.get("/mz/v4/api/film/coming-soon", {
+    //         params: {
+    //             __t: new Date().getTime(),
+    //             page: 1,
+    //             count: 3
+    //         }
+    //     }).then((res)=>{
+    //         context.commit("getSoonPlayingSync",res.data.data.films)
+    //         // console.log(this.state.nowPlayingList)
+    //     })
+    // },
     getList(context,obj){
         if(!context.state.hasMore) {
             Toast({

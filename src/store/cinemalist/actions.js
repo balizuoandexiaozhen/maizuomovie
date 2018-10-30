@@ -19,6 +19,25 @@ export default {
             context.state.district = [...new Set(arr)]
             console.log(context.state.district)
         }) 
+    },
+
+    getcinemaobj(context) {
+        axios.get("/mz/v4/api/cinema",{
+            params:{
+                __t: new Date().getTime()
+            }
+        }).then((res) => {
+            res.data.data.cinemas.forEach((item) => {
+                if(!context.state.cinemaobj[item.district.name]) {
+                    context.state.cinemaobj[item.district.name] = []
+                    context.state.cinemaobj[item.district.name].flag = false
+                }
+                context.state.cinemaobj[item.district.name].push(item)
+            })
+            context.state.cinemaobj["朝阳区"].flag = true;
+            console.log(context.state.cinemaobj)
+            // this.$forceUpdate();
+        })
     }
 }
 

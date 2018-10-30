@@ -5,9 +5,10 @@ import App from './App'
 import router from './router'
 import axios from 'axios';
 import store from './store'
-
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
+import  "./module/filter"
+import  "./module/directive"
 Vue.use(MintUI)
 
 Vue.prototype.$http = axios;
