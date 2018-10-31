@@ -126,17 +126,17 @@ var router = new Router({
 });
 
 router.beforeEach((to,from,next) => {
-  console.log(to.meta)
+  // console.log(to.meta)
   if(to.meta && to.meta.islogin) {
     if(sessionStorage.getItem("user")) {
       next();
-      console.log("登陆了")
+      // console.log("登陆了")
     } else {
       router.push({name:"login"})
     }
   } else {
     next();
-    console.log("meiyou")
+    // console.log("meiyou")
   }
 })
 

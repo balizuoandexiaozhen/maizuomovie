@@ -53,8 +53,8 @@ export default {
             // console.log(this.$store.state.city)
         },
         gocity(item) {
-            // console.log(item)
-            // console.log(this.$refs[item][0].offsetTop)
+            console.log(item)
+            console.log(this.$refs[item][0].offsetTop)
             document.documentElement.scrollTop = this.$refs[item][0].offsetTop - 50;
             document.body.scrollTop = this.$refs[item][0].offsetTop - 50;
         }
