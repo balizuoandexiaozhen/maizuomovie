@@ -53,10 +53,10 @@ export default {
             // console.log(this.$store.state.city)
         },
         gocity(item) {
-            console.log(item)
-            console.log(this.$refs[item][0].offsetTop)
-            document.documentElement.scrollTop = this.$refs[item][0].offsetTop - 50;
-            document.body.scrollTop = this.$refs[item][0].offsetTop - 50;
+            console.log('----', this.$refs[item][0].offsetTop)
+            let element = document.documentElement || document.body;
+            element.scrollTop = this.$refs[item][0].offsetTop - 50;
+
         }
 
     },
@@ -80,9 +80,9 @@ export default {
                 return item.zm
             })
             this.letters = [...new Set(letters)]
-         
+
         })
-    } 
+    }
 }
 </script>
 
@@ -107,7 +107,7 @@ export default {
         background-color: #ebebeb;
         margin-top: -1px;
     }
-    
+
     li {
         width: 25%;
         font-size: 16px;

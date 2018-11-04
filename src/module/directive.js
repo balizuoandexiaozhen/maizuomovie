@@ -13,8 +13,8 @@ Vue.directive("scroll",(el,binding) => {
     })
 })
 
-Vue.directive("gotop",(el,binding) => {
-    window.addEventListener("click", () => {
+Vue.directive("gotop", (el, binding) => {
+    el.addEventListener("click", () => {
         document.documentElement.scrollTop = document.body.scrollTop  = 0;
     })
 })
